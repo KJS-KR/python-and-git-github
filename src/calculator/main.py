@@ -1,43 +1,14 @@
-# ch 4.2.3 main.py
-from PyQt5.QtWidgets import (QApplication, QWidget, 
-                             QPushButton, QVBoxLayout, 
-                             QMessageBox, QPlainTextEdit)
-from PyQt5.QtGui import QIcon
-
 import sys
+from ui import View
+from ctrl import Control
+from PyQt5.QtWidgets import QApplication        
 
-
-class CalCulator(QWidget):
-
-    def __init__(self):
-        super().__init__()
-        self.initUI()
-
-    def initUI(self):
-        self.te1 = QPlainTextEdit()
-        self.te1.setReadOnly(True)
-        
-        self.btn1 = QPushButton("Message", self)
-        self.btn1.clicked.connect(self.activateMessage)
-
-        vbox = QVBoxLayout()
-        vbox.addWidget(self.te1)
-        vbox.addWidget(self.btn1)
-        vbox.addStretch(1)
-
-        self.setLayout(vbox)
-
-        self.setWindowTitle("Calculator")
-        self.setWindowIcon(QIcon('icon.png'))
-        self.resize(256, 256)
-        self.show()
-
-    def activateMessage(self):
-        # QMessageBox.information(self, "information", "Button clicked")
-        self.te1.appendPlainText("Button Clicked!")
-
-
-if __name__ == "__main__":
-    app = QApplication(sys.argv)
-    view = CalCulator()
+def main():
+    calc = QApplication(sys.argv)
+    app=QApplication(sys.argv)
+    view=View()
+    Control(view=view)
     sys.exit(app.exec_())
+
+if __name__ == '__main__':
+    main()
